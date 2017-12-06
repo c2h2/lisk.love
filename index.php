@@ -54,14 +54,14 @@
         <td id="bitx1">Loading...</td>
         <td id="bitx2">Loading...</td>
         <td id="bitx3">Loading...</td>
-        <td></td>
+        <td id='bitx4'>Loading...</td>
       </tr>
       <tr>
         <td>Poloniex</td>
         <td id="polo1">Loading...</td>
         <td id="polo2">Loading...</td>
         <td id="polo3">Loading...</td>
-        <td></td>
+        <td id="polo4">Loading...</td>
       </tr>
       </tr>
       <tr>
@@ -69,7 +69,7 @@
         <td id='bina1'>Loading...</td>
         <td id='bina2'>Loading...</td>
         <td id='bina3'>Loading...</td>
-        <td></td>
+        <td id='bina4'>Loading...</td>
       </tr>
       <tr>
         <td>More</td>
@@ -129,6 +129,9 @@ $(function(){
       $("#polo2").text(parseFloat(obj["polo"]['USDT_BTC']['last']).toFixed(2));
       $("#bina2").text(parseFloat(obj["bina"]['BTCUSDT']).toFixed(2));
 
+      $("#bitx4").text(obj["bitx"]['btc_lsk']['result'][0]['Volume'].toFixed(0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+      $("#polo4").text(parseFloat(obj["polo"]['BTC_LSK']['quoteVolume']).toFixed(0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
+      $("#bina4").text(parseFloat(obj["bina"]['LSKBTC_VOL']['volume']).toFixed(0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
       calculate();
 
     });

@@ -44,7 +44,8 @@
         <th>Exchange</th>
         <th>Last LSK_BTC </th>
         <th>Last BTC_USDT </th>
-        <th>Calculated Price USD</th>
+        <th>Price USDT</th>
+        <th>24HR Vol</th>
       </tr>
     </thead>
     <tbody>
@@ -53,11 +54,13 @@
         <td id="bitx1">Loading...</td>
         <td id="bitx2">Loading...</td>
         <td id="bitx3">Loading...</td>
+        <td></td>
       </tr>
       <tr>
         <td>Poloniex</td>
         <td id="polo1">Loading...</td>
         <td id="polo2">Loading...</td>
+        <td id="polo3">Loading...</td>
         <td></td>
       </tr>
       </tr>
@@ -65,8 +68,17 @@
         <td>Binance</td>
         <td id='bina1'>Loading...</td>
         <td id='bina2'>Loading...</td>
+        <td id='bina3'>Loading...</td>
         <td></td>
       </tr>
+      <tr>
+        <td>More</td>
+        <td id='a1'></td>
+        <td id='a2'></td>
+        <td id='a3'></td>
+        <td></td>
+      </tr>
+
     </tbody>
           </div>
 
@@ -99,6 +111,8 @@ $(function(){
 
   function calculate(e){
       $('#bitx3').text('$'+($('#bitx1').text() * $('#bitx2').text()).toFixed(3));
+      $('#polo3').text('$'+($('#polo1').text() * $('#polo2').text()).toFixed(3));
+      $('#bina3').text('$'+($('#bina1').text() * $('#bina2').text()).toFixed(3));
   }
 
   function fetch_mkt(){

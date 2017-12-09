@@ -72,7 +72,7 @@
         <td id='bina4'>Loading...</td>
       </tr>
       <tr>
-        <td>More</td>
+        <td>Yobit</td>
         <td id='a1'></td>
         <td id='a2'></td>
         <td id='a3'></td>
@@ -82,9 +82,65 @@
     </tbody>
           </div>
 
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Exchange</th>
+        <th>BTC </th>
+        <th>ETH </th>
+        <th>ETH/BTC </th>
+        <th>BCH </th>
+        <th>BCH/BTC </th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Bittrex</td>
+        <td id="bitx_a1">Loading...</td>
+        <td id="bitx_a2">Loading...</td>
+        <td id="bitx_a3">Loading...</td>
+        <td id="bitx_a4">-</td>
+        <td id="bitx_a5">-</td>
+      </tr>
+      <tr>
+        <td>Poloniex</td>
+        <td id="polo_a1">Loading...</td>
+        <td id="polo_a2">Loading...</td>
+        <td id="polo_a3">Loading...</td>
+        <td id="polo_a4">-</td>
+        <td id="polo_a5">-</td>
+      </tr>
+      <tr>
+        <td>Binance</td>
+        <td id="bina_a1">Loading...</td>
+        <td id="bina_a2">Loading...</td>
+        <td id="bina_a3">Loading...</td>
+        <td id="bina_a4">-</td>
+        <td id="bina_a5">-</td>
+      </tr>
+      <tr>
+        <td>acx.io</td>
+        <td id="acxi_a1">Loading...</td>
+        <td id="acxi_a2">Loading...</td>
+        <td id="acxi_a3">-</td>
+        <td id="acxi_a4">Loading...</td>
+        <td id="acxi_a5">-</td>
+      </tr>
+      <tr>
+        <td>forex rate</td>
+        <td id="aud1"></td>
+        <td id="aud2"></td>
+        <td id="aud3"></td>
+        <td id="aud4"></td>
+        <td id="aud5"></td>
+      </tr>
+
+
+    </tbody>
+
           <div class="mastfoot">
             <div class="inner">
-              <p>Sponsored by <a href="http://umine.io">umine.io</a>, mining cryptocurrencies on any PC/Mac.</p>
+              <p>Sponsored by <a href="https://umine.io">umine.io</a>, mining cryptocurrencies on any PC/Mac.</p>
             </div>
           </div>
 
@@ -113,12 +169,25 @@ $(function(){
       $('#bitx3').text('$'+($('#bitx1').text() * $('#bitx2').text()).toFixed(3));
       $('#polo3').text('$'+($('#polo1').text() * $('#polo2').text()).toFixed(3));
       $('#bina3').text('$'+($('#bina1').text() * $('#bina2').text()).toFixed(3));
+
+      $('#bitx_a3').text(($('#bitx_a2').text() / $('#bitx_a1').text()).toFixed(8));
+      $('#polo_a3').text(($('#polo_a2').text() / $('#polo_a1').text()).toFixed(8));
+      $('#bina_a3').text(($('#bina_a2').text() / $('#bina_a1').text()).toFixed(8));
+      $('#acxi_a3').text(($('#acxi_a2').text() / $('#acxi_a1').text()).toFixed(8));
+
+
+      $('#polo_a5').text(($('#polo_a4').text() / $('#polo_a1').text()).toFixed(8));
+      $('#acxi_a5').text(($('#acxi_a4').text() / $('#acxi_a1').text()).toFixed(8));
+
+      $('#aud1').text(($('#bitx_a1').text() / $('#acxi_a1').text()).toFixed(3));
+      $('#aud2').text(($('#bitx_a2').text() / $('#acxi_a2').text()).toFixed(3));
+      $('#aud4').text(($('#polo_a4').text() / $('#acxi_a4').text()).toFixed(3));
+
   }
 
   function fetch_mkt(){
     $.get("prices_json.txt", function(mkt_json){
       var obj = jQuery.parseJSON(mkt_json );
-      console.log(obj);
         
       //$("#b1").text(mkt);
       $("#bitx1").text(obj["bitx"]['btc_lsk']['result'][0]['Last'].toFixed(8));
@@ -132,8 +201,25 @@ $(function(){
       $("#bitx4").text(obj["bitx"]['btc_lsk']['result'][0]['Volume'].toFixed(0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
       $("#polo4").text(parseFloat(obj["polo"]['BTC_LSK']['quoteVolume']).toFixed(0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
       $("#bina4").text(parseFloat(obj["bina"]['LSKBTC_VOL']['volume']).toFixed(0).toString().replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,"));
-      calculate();
 
+      $("#bitx_a1").text(obj["bitx"]['btc_usdt']['result'][0]['Last'].toFixed(2));
+      $("#polo_a1").text(parseFloat(obj["polo"]['USDT_BTC']['last']).toFixed(2));
+      $("#bina_a1").text(parseFloat(obj["bina"]['BTCUSDT']).toFixed(2));
+      $("#acxi_a1").text(parseFloat(obj["acxi"]['btcaud']['ticker']['last']).toFixed(2));
+
+      $("#bitx_a2").text(obj["bitx"]['eth_usdt']['result'][0]['Last'].toFixed(2));
+      $("#polo_a2").text(parseFloat(obj["polo"]['USDT_ETH']['last']).toFixed(2));
+      $("#bina_a2").text(parseFloat(obj["bina"]['ETHUSDT']).toFixed(2));
+      $("#acxi_a2").text(parseFloat(obj["acxi"]['ethaud']['ticker']['last']).toFixed(2));
+
+      //$("#bitx_a4").text(obj["bitx"]['bch_usdt']['result'][0]['Last'].toFixed(2));
+      $("#polo_a4").text(parseFloat(obj["polo"]['USDT_BCH']['last']).toFixed(2));
+      //$("#bina_a4").text(parseFloat(obj["bina"]['BCHUSDT']).toFixed(2));
+      $("#acxi_a4").text(parseFloat(obj["acxi"]['bchaud']['ticker']['last']).toFixed(2));
+
+
+
+      calculate();
     });
   }
 

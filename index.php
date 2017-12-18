@@ -16,7 +16,14 @@
     <!-- Custom styles for this template -->
     <link href="css/cover.css" rel="stylesheet">
   </head>
-
+  <style>
+    .redcolor {
+      background:red !important;
+    }
+    .greencolor {
+      background:green !important;
+    }
+  </style>
   <body>
 
     <div class="site-wrapper">
@@ -217,6 +224,26 @@ $(function(){
       //$("#bina_a4").text(parseFloat(obj["bina"]['BCHUSDT']).toFixed(2));
       $("#acxi_a4").text(parseFloat(obj["acxi"]['bchaud']['ticker']['last']).toFixed(2));
 
+      
+
+        for(var i=0;i<arr.length;i++){  
+          for(var j = i + 1;j<arr.length;j++){
+            if(arr[i]>arr[j]){
+                var tmp = a[i];
+                add($("#bitx_a2"),"redcolor");
+                // tmp.addClass("redcolor").siblings().removeClass("redcolor");
+            }else {
+              add($("#bitx_a2"),"greencolor");
+                // tmp.addClass("greencolor").siblings().removeClass("greencolor");
+            }
+        }
+
+      function add(el,color) { 
+        el.addClass(color).siblings().removeClass(color);
+      }
+        
+ 
+      
 
 
       calculate();
